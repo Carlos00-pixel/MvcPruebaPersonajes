@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MvcPruebaPersonajes.Models.Personaje>
+
+@{
+    ViewData["Title"] = "GetPersonajes";
+}
+
+<h1>Personajes</h1>
+
+<p>
+    <a asp-action="InsertPersonaje" asp-controller="Personajes">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPersonaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPersonaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)" style="width: 150px; height: 150px;"/>
+            </td>
+            <td>
+                <a asp-action="Details" 
+                    asp-controller="Personajes"
+                    asp-route-id="@item.IdPersonaje"
+                    class="btn btn-info">
+                    Detalles
+                </a>
+                <a asp-action="UpdatePersonaje"
+                   asp-controller="Personajes"
+                   asp-route-id="@item.IdPersonaje"
+                   class="btn btn-warning">
+                    Update
+                </a>
+                <a asp-action="DeletePersonaje"
+                   asp-controller="Personajes"
+                   asp-route-id="@item.IdPersonaje"
+                   class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
